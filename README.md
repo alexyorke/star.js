@@ -3,7 +3,7 @@ Fixing typos was never easier*. A small javascript library to automatically corr
 
 *Might be used for IM applications, where messages can be edited later or sent a few seconds late in order to allow for corrections.*
 
-Star.js is very new, and so most of the features have not been implemented yet.
+Star.js is very new, and so most of the features have not been implemented yet. It's meant to replace manual spell checkers, or drop down menus that let you choose a different word. Spell checkers are very good if you have the time, but if you only have one correction to make, they're a bit overkill, especially when you have to use the mouse.
 
 # How it works
 
