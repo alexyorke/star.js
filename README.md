@@ -12,13 +12,15 @@ Star.js will notice that the second message ends with a star, and will use that 
 
 For example,
 
-This is a msg with a tyop in it
-typo*
+Message: This is a msg with a tyop in it
+
+Correction: typo*
 
 Star.js will replace "tyop" with "typo" because it sounds similar (using soundex) but will not consider msg to be a typo because the replacement does not make sense. Similarly, if I replace a "misspelled" word with another one:
 
-Just send the file over to /dev/zero
-/dev/null*
+Message: Just send the file over to /dev/zero
+
+Correction: /dev/null*
 
 Star.js will recognize that /dev/zero is a misspelled word, and notices that the replacement is also misspelled. Since the two look similar, (both contain slashes and start with /dev/) it will replace it.
 
@@ -26,16 +28,17 @@ Sometimes, no words are misspelled but instead a context change is needed. If so
 
 For example,
 
-Turn left on Main Street, then take a right at 83 Prince Street.
-Turn right*
+Message: Turn left on Main Street, then take a right at 83 Prince Street.
+
+Correction: Turn right*
 
 Since the correction begins with "turn" it will go to the first instance of the word "turn" and replace the next word with the next word in the correction. So, the message would read:
 
-Turn right on Main Street, then take a right at 83 Prince Street.
+Corrected Message: Turn right on Main Street, then take a right at 83 Prince Street.
 
 Things can get a bit tricky when working with multiple values that could easily be replaced, such as numbers.
 
-I have 34 apples and 83 eggs.
-23*
+Message: I have 34 apples and 83 eggs.
+Correction: 23*
 
 Here, it is more likely that the user typed "34" instead of "23" because of how close the number keys are on the keyboard compared to the distance from 8 and 3 to 2 and 3.
