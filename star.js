@@ -1,77 +1,82 @@
 var message = ["helo my name is bob", "hello*"];
 
-correction = message[1];
-correction = correction.split("*");
-var words = message[0].split(" ");
-
-for (var i = 0; i < words.length; i++) {
-
-    if (soundex(words[i]) == soundex(correction)) {
-     words[i] = correction;   
-    }
-    
-}
-
 document.getElementById("example").innerHTML = words.join(" ");
 
+var starjs = {
+	correct: function(message) {
+		correction = message[1];
+		correction = correction.split("*");
+		var words = message[0].split(" ");
 
-function soundex(s) { 
-        var x = s.toUpperCase().split('');
-        var firstLetter = x[0];
+		for (var i = 0; i < words.length; i++) {
 
-        // convert letters to numeric code
-        for (var i = 0; i < x.length; i++) {
-            switch (x[i]) {
+			if (soundex(words[i]) == soundex(correction)) {
+				words[i] = correction;   
+			}
 
-                case 'B':
-                case 'F':
-                case 'P':
-                case 'V':
-                    x[i] = '1';
-                    break;
+		}
+		return words;
 
-                case 'C':
-                case 'G':
-                case 'J':
-                case 'K':
-                case 'Q':
-                case 'S':
-                case 'X':
-                case 'Z':
-                    x[i] = '2';
-                    break;
+	},
+	soundex: function(s) { 
+		var x = s.toUpperCase().split('');
+		var firstLetter = x[0];
 
-                case 'D':
-                case 'T':
-                    x[i] = '3';
-                    break;
+		// convert letters to numeric code
+		for (var i = 0; i < x.length; i++) {
+			switch (x[i]) {
 
-                case 'L':
-                    x[i] = '4';
-                    break;
+				case 'B':
+				case 'F':
+				case 'P':
+				case 'V':
+					x[i] = '1';
+					break;
 
-                case 'M':
-                case 'N':
-                    x[i] = '5';
-                    break;
+				case 'C':
+				case 'G':
+				case 'J':
+				case 'K':
+				case 'Q':
+				case 'S':
+				case 'X':
+				case 'Z':
+					x[i] = '2';
+					break;
 
-                case 'R':
-                    x[i] = '6';
-                    break;
+				case 'D':
+				case 'T':
+					x[i] = '3';
+					break;
 
-                default:
-                    x[i] = '0';
-                    break;
-            }
-        }
+				case 'L':
+					x[i] = '4';
+					break;
 
-        // remove duplicates
-        var output = firstLetter;
-        for (var i = 1; i < x.length; i++)
-            if (x[i] != x[i-1] && x[i] != '0')
-                output += x[i];
+				case 'M':
+				case 'N':
+					x[i] = '5';
+					break;
 
-        // pad with 0's or truncate
-        output = output + "0000";
-        return output.substring(0, 4);
-    }
+				case 'R':
+					x[i] = '6';
+					break;
+
+				default:
+					x[i] = '0';
+					break;
+			}
+		}
+
+		// remove duplicates
+		var output = firstLetter;
+		for (var i = 1; i < x.length; i++)
+			if (x[i] != x[i-1] && x[i] != '0')
+				output += x[i];
+
+		// pad with 0's or truncate
+		output = output + "0000";
+		return output.substring(0, 4);
+	}
+
+}
