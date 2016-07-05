@@ -1,10 +1,8 @@
-var message1 = "helo my name is bob";
-var correction = "hello*";
-var message_corrected = "";
+var message = ["helo my name is bob", "hello*"];
 
+correction = message[1];
 correction = correction.split("*");
-correction = correction[0];
-var words = message1.split(" ");
+var words = message[0].split(" ");
 
 for (var i = 0; i < words.length; i++) {
 
