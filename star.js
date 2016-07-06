@@ -6,7 +6,7 @@ var starjs = {
 
 		for (var i = 0; i < words.length; i++) {
 
-			if (starjs.soundex(words[i]) == starjs.soundex(correction)) {
+			if (this.soundex(words[i]) == this.soundex(correction)) {
 				words[i] = correction;   
 			}
 
