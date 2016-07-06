@@ -1,6 +1,6 @@
 var starjs = {
 	correct: function(message) {
-		correction = message[1];
+		var correction = message[1];
 		correction = correction.split("*");
 		var words = message[0].split(" ");
 
@@ -15,7 +15,7 @@ var starjs = {
 
 	},
 	soundex: function(str) { 
-		var str = str.toString();
+		str = str.toString();
 		str = str.toUpperCase();
 		str = str.split('');
 
@@ -78,4 +78,4 @@ var starjs = {
 		return output.substring(0, 4);
 	}
 
-}
+};
