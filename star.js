@@ -79,3 +79,5 @@ var starjs = {
 	}
 
 };
+
+module.exports = starjs;

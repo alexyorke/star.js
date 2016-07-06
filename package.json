@@ -1,7 +1,7 @@
 {
-  "name": "star.js",
+  "name": "star-correct",
   "version": "1.0.0",
-  "description": "Fixing typos was never easier*",
+  "description": "A small javascript library to automatically correct typos in messages based on the next message.",
   "main": "star.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/Decagon/star.js.git"
   },
+  "keywords": [
+    "Correct",
+    "Text",
+    "Star",
+    "Message"
+  ],
   "author": "Decagon <decagongithub@gmail.com>",
   "license": "ISC",
   "bugs": {

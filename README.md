@@ -4,6 +4,14 @@ Fixing typos was never easier*. A small javascript library to automatically corr
 ### Usage: 
 `starjs.correct(phrase[]);` where `phrase` is a two element array, the first element is the first message, the second is the correction*.
 
+example (nodejs): 
+```
+var starjs = require('star-correct');
+
+// Will Output 'Hello My Name is Bill'
+console.log(starjs.correct(['Helo My Name is Bill', 'Hello']));
+```
+##### Sample Usage
 *Might be used for IM applications, where messages can be edited later or sent a few seconds late in order to allow for corrections.*
 
 Star.js is very new, and so most of the features have not been implemented yet. It's meant to replace manual spell checkers, or drop down menus that let you choose a different word. Spell checkers are very good if you have the time, but if you only have one correction to make, they're a bit overkill, especially when you have to use the mouse.
