@@ -9,7 +9,16 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
 </head>
 <body>
-<p id="example"> </p>
+<h1>Example</h1>
+
+Message 1: Helo my name is Bob<br />
+
+Message 2: Hello*<br />
+
+Automatically corrected message: <p id="example"> </p>
 <script src="star.js"></script>
+<script>
+document.getElementById("example").innerHTML = starjs.correct(["Helo my name is Bob", "Hello*"]);
+</script>
 </body>
 </html>

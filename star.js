@@ -1,7 +1,3 @@
-var message = ["helo my name is bob", "hello*"];
-
-document.getElementById("example").innerHTML = words.join(" ");
-
 var starjs = {
 	correct: function(message) {
 		correction = message[1];
@@ -10,27 +6,30 @@ var starjs = {
 
 		for (var i = 0; i < words.length; i++) {
 
-			if (soundex(words[i]) == soundex(correction)) {
+			if (starjs.soundex(words[i]) == starjs.soundex(correction)) {
 				words[i] = correction;   
 			}
 
 		}
-		return words;
+		return words.join(" ");
 
 	},
-	soundex: function(s) { 
-		var x = s.toUpperCase().split('');
-		var firstLetter = x[0];
+	soundex: function(str) { 
+		var str = str.toString();
+		str = str.toUpperCase();
+		str = str.split('');
+
+		var firstLetter = str[0];
 
 		// convert letters to numeric code
-		for (var i = 0; i < x.length; i++) {
-			switch (x[i]) {
+		for (var i = 0; i < str.length; i++) {
+			switch (str[i]) {
 
 				case 'B':
 				case 'F':
 				case 'P':
 				case 'V':
-					x[i] = '1';
+					str[i] = '1';
 					break;
 
 				case 'C':
@@ -41,38 +40,38 @@ var starjs = {
 				case 'S':
 				case 'X':
 				case 'Z':
-					x[i] = '2';
+					str[i] = '2';
 					break;
 
 				case 'D':
 				case 'T':
-					x[i] = '3';
+					str[i] = '3';
 					break;
 
 				case 'L':
-					x[i] = '4';
+					str[i] = '4';
 					break;
 
 				case 'M':
 				case 'N':
-					x[i] = '5';
+					str[i] = '5';
 					break;
 
 				case 'R':
-					x[i] = '6';
+					str[i] = '6';
 					break;
 
 				default:
-					x[i] = '0';
+					str[i] = '0';
 					break;
 			}
 		}
 
 		// remove duplicates
 		var output = firstLetter;
-		for (var i = 1; i < x.length; i++)
-			if (x[i] != x[i-1] && x[i] != '0')
-				output += x[i];
+		for (var i = 1; i < str.length; i++)
+			if (str[i] != str[i-1] && str[i] != '0')
+				output += str[i];
 
 		// pad with 0's or truncate
 		output = output + "0000";
