@@ -1,0 +1,19 @@
+{
+  "name": "star.js",
+  "version": "1.0.0",
+  "description": "Fixing typos was never easier*",
+  "main": "star.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Decagon/star.js.git"
+  },
+  "author": "Decagon <decagongithub@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Decagon/star.js/issues"
+  },
+  "homepage": "https://github.com/Decagon/star.js#readme"
+}
