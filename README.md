@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/star-correct.svg)](https://badge.fury.io/js/star-correct)
+
 # star.js
 Fixing typos was never easier*. A small javascript library to automatically correct typos in messages based on the next message. That means if I type something that ends with a star, Star.js will recognize that that word is meant to replace a word in the previously sent message (presumably because it was misspelled) and try to replace it.
 
