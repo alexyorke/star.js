@@ -1,13 +1,14 @@
 # star.js
 Fixing typos was never easier*. A small javascript library to automatically correct typos in messages based on the next message. That means if I type something that ends with a star, Star.js will recognize that that word is meant to replace a word in the previously sent message (presumably because it was misspelled) and try to replace it.
 
-Usage: `starjs.correct(phrase[]);` where `phrase` is a two element array, the first element is the first message, the second is the correction*.
+### Usage: 
+`starjs.correct(phrase[]);` where `phrase` is a two element array, the first element is the first message, the second is the correction*.
 
 *Might be used for IM applications, where messages can be edited later or sent a few seconds late in order to allow for corrections.*
 
 Star.js is very new, and so most of the features have not been implemented yet. It's meant to replace manual spell checkers, or drop down menus that let you choose a different word. Spell checkers are very good if you have the time, but if you only have one correction to make, they're a bit overkill, especially when you have to use the mouse.
 
-# How it works
+### How it works
 
 Say you're on some sort of internet chat thing, and you type:
 
