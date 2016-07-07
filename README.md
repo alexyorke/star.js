@@ -4,7 +4,7 @@
 Fixing typos was never easier*. A small javascript library to automatically correct typos in messages based on the next message. That means if I type something that ends with a star, Star.js will recognize that that word is meant to replace a word in the previously sent message (presumably because it was misspelled) and try to replace it.
 
 ### Usage: 
-`starjs.correct(phrase[]);` where `phrase` is a two element array, the first element is the first message, the second is the correction*.
+`starjs.correct(phrase[]);` where `phrase` is a two element array, the first element is the first message, the second is the correction. If there is no corrections to be made (because the correction is too ambigious, or it doesn't need to be corrected) it will return `false`.
 
 example (nodejs): 
 ```
