@@ -1,17 +1,25 @@
 var starjs = {
-	correct: function(message) {
+	correct: function(message, allowMultipleCorrections = false) {
 		var correction = message[1];
 		correction = correction.split("*");
 		var words = message[0].split(" ");
-
+		var modifiedText = false;
 		for (var i = 0; i < words.length; i++) {
 
 			if (this.soundex(words[i]) == this.soundex(correction)) {
 				words[i] = correction;   
+				modifiedText = true;
+				if (!allowMultipleCorrections) {
+					break;
+				}
 			}
 
 		}
-		return words.join(" ");
+		if (modifiedText) {
+			return words.join(" ");
+		} else {
+		        return false;
+		}
 
 	},
 	soundex: function(str) { 
