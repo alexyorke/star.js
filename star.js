@@ -9,7 +9,7 @@ var starjs = {
 		}	       
 
 		var modifiedText = false;
-		for (var i = 0; i < words.length; i++) {
+		for (var i = words.length; i--;) {
 
 			if (this.soundex(words[i]) == this.soundex(correction)) {
 				words[i] = correction;   
