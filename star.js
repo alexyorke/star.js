@@ -3,6 +3,11 @@ var starjs = {
 		var correction = message[1];
 		correction = correction.split("*");
 		var words = message[0].split(" ");
+
+		if (message[1].split(" ").length > words.length) {
+		       return false;
+		}	       
+
 		var modifiedText = false;
 		for (var i = 0; i < words.length; i++) {
 
