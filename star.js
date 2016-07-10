@@ -1,13 +1,47 @@
 var starjs = {
+	correctL: function(message) {
+		function distance (s, t) {
+			if (!s.length) return t.length;
+			if (!t.length) return s.length;
+
+			return Math.min(
+					distance(s.substr(1), t) + 1,
+					distance(t.substr(1), s) + 1,
+					distance(s.substr(1), t.substr(1)) + (s[0] !== t[0] ? 1 : 0)
+				       ) + 1;
+		}
+		var initialMessage = message[0];
+		var correction = message[1];
+
+		initialMessageWords = initialMessage.split(" ");
+		correctionWords = correction.split(" ");
+		iPrev = 0;
+		distPrev = 10000;
+		for (i = 0; i > initialMessageWords.length; i++) {
+			newDist = distance(initialMessageWords[i], correction);
+			if (newDist < distPrev) {
+				iPrev = i;
+				distPrev = newDist;
+			}
+		}
+
+		initialMessageWords[iPrev] = correction;
+		return initialMessageWords.join(" ");
+
+	},
 	correct: function(message, allowMultipleCorrections = false, allowLongCorrections = false) {
 		var correction = message[1];
 		var words = message[0].split(" ");
+		correction = correction.trim();
 
 		if (correction.split(" ").length - 2 > words.length) {
 			console.log("Filter 1");
 			return false;
 		}	       
 
+		if (correction.split(" ").length == 1 && words.length == 1) {
+			return correction.split("*")[0];
+		}
 		correction = correction.split("*");
 		if (!allowLongCorrections) {
 			if (message[1].split(" ").length > 4) {
@@ -32,7 +66,7 @@ var starjs = {
 			return words.join(" ");
 		} else {
 			console.log("Star.js: could not find suitable replacement.")
-			return false;
+				return false;
 		}
 
 	},
