@@ -1,32 +1,105 @@
 var starjs = {
 	correctL: function(message) {
-		function distance (s, t) {
-			if (!s.length) return t.length;
-			if (!t.length) return s.length;
+		function distance(s, t) {
+			var d = []; //2d matrix
 
-			return Math.min(
-					distance(s.substr(1), t) + 1,
-					distance(t.substr(1), s) + 1,
-					distance(s.substr(1), t.substr(1)) + (s[0] !== t[0] ? 1 : 0)
-				       ) + 1;
+			// Step 1
+			var n = s.length;
+			var m = t.length;
+
+			if (n == 0) return m;
+			if (m == 0) return n;
+
+			//Create an array of arrays in javascript (a descending loop is quicker)
+			for (var i = n; i >= 0; i--) d[i] = [];
+
+			// Step 2
+			for (var i = n; i >= 0; i--) d[i][0] = i;
+			for (var j = m; j >= 0; j--) d[0][j] = j;
+
+			// Step 3
+			for (var i = 1; i <= n; i++) {
+				var s_i = s.charAt(i - 1);
+
+				// Step 4
+				for (var j = 1; j <= m; j++) {
+
+					//Check the jagged ld total so far
+					if (i == j && d[i][j] > 4) return n;
+
+					var t_j = t.charAt(j - 1);
+					var cost = (s_i == t_j) ? 0 : 1; // Step 5
+
+					//Calculate the minimum
+					var mi = d[i - 1][j] + 1;
+					var b = d[i][j - 1] + 1;
+					var c = d[i - 1][j - 1] + cost;
+
+					if (b < mi) mi = b;
+					if (c < mi) mi = c;
+
+					d[i][j] = mi; // Step 6
+
+					//Damerau transposition
+					if (i > 1 && j > 1 && s_i == t.charAt(j - 2) && s.charAt(i - 2) == t_j) {
+						d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + cost);
+					}
+				}
+			}
+
+			// Step 7
+			return d[n][m];
 		}
-		var initialMessage = message[0];
-		var correction = message[1];
 
-		initialMessageWords = initialMessage.split(" ");
-		correctionWords = correction.split(" ");
-		iPrev = 0;
-		distPrev = 10000;
-		for (i = 0; i > initialMessageWords.length; i++) {
-			newDist = distance(initialMessageWords[i], correction);
-			if (newDist < distPrev) {
-				iPrev = i;
-				distPrev = newDist;
+		message1_words = message[0].split(" ");
+		message2 = message[1].split("*")[0];
+
+		if (message1_words.length == message2.split(" ").length) {
+			return message2;
+		}
+
+		if (message2.length == 0) {
+			return false;
+		}
+		if (("!$%().,?;:".indexOf(message2[message2.length - 1]) > -1)) {
+
+			if (message2.join("").length == 1) {
+				// entire correction is to fix punctuation
+
+				message1_words = message1_words.join(" ");
+				message1_words[message1_words.length - 1] = message2;
+				return message1_words;
 			}
 		}
 
-		initialMessageWords[iPrev] = correction;
-		return initialMessageWords.join(" ");
+		if (message2[message2.length - 1] == ":") {
+			return false; // a :* face
+		}
+
+		if ((message1_words.length == 1) && (message2.length == 1) && (message1_words[0] == message2[0])) {
+			return false;
+		}
+		oldIndex=0;
+		oldDist = 10000;
+		for (var i = 0; i < message1_words.length; i++) {
+
+			newDist = distance(message1_words[i],message2);
+
+			if (newDist < oldDist) {
+				oldDist=newDist;
+				oldIndex = i;
+			}
+
+		}
+		prevWord = message1_words[oldIndex];
+		punctuation = (prevWord.substr(prevWord.length - 1));
+		flag = false;
+		if (!("!$%().,?;:".indexOf(punctuation) > -1)) {
+			punctuation = "";
+		}
+		if (oldDist > 13) { return false; }
+		message1_words[oldIndex] = message2+punctuation;
+		return message1_words.join(" ");
 
 	},
 	correct: function(message, allowMultipleCorrections = false, allowLongCorrections = false) {
