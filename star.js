@@ -1,12 +1,18 @@
 var starjs = {
-	correct: function(message, allowMultipleCorrections = false) {
+	correct: function(message, allowMultipleCorrections = false, allowLongCorrections = false) {
 		var correction = message[1];
 		correction = correction.split("*");
 		var words = message[0].split(" ");
 
 		if (message[1].split(" ").length > words.length) {
-		       return false;
+			return false;
 		}	       
+
+		if (!allowLongCorrections) {
+			if (message[1].split(" ").length > 4) {
+				return false; // disallow long corrections
+			}
+		}
 
 		var modifiedText = false;
 		for (var i = words.length; i--;) {
@@ -23,7 +29,7 @@ var starjs = {
 		if (modifiedText) {
 			return words.join(" ");
 		} else {
-		        return false;
+			return false;
 		}
 
 	},
