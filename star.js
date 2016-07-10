@@ -1,15 +1,17 @@
 var starjs = {
 	correct: function(message, allowMultipleCorrections = false, allowLongCorrections = false) {
 		var correction = message[1];
-		correction = correction.split("*");
 		var words = message[0].split(" ");
 
-		if (message[1].split(" ").length > words.length) {
+		if (correction.split(" ").length - 2 > words.length) {
+			console.log("Filter 1");
 			return false;
 		}	       
 
+		correction = correction.split("*");
 		if (!allowLongCorrections) {
 			if (message[1].split(" ").length > 4) {
+				console.log("Triggered filter 2");
 				return false; // disallow long corrections
 			}
 		}
@@ -29,6 +31,7 @@ var starjs = {
 		if (modifiedText) {
 			return words.join(" ");
 		} else {
+			console.log("Star.js: could not find suitable replacement.")
 			return false;
 		}
 
