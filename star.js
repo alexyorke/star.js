@@ -51,55 +51,61 @@ var starjs = {
 			return d[n][m];
 		}
 
-		message1_words = message[0].split(" ");
-		message2 = message[1].split("*")[0];
+		wordsOfMessage = message[0].split(" ");
+		correction = message[1].split("*")[0];
 
-		if (message1_words.length == message2.split(" ").length) {
-			return message2;
+		if (wordsOfMessage.length == correction.split(" ").length) {
+			return correction;
 		}
 
-		if (message2.length == 0) {
+		if (correction.length == 0) {
 			return false;
 		}
-		if (("!$%().,?;:".indexOf(message2[message2.length - 1]) > -1)) {
+		if (("!$%().,?;:".indexOf(correction[correction.length - 1]) > -1)) {
 
-			if (message2.join("").length == 1) {
+			if (correction.join("").length == 1) {
 				// entire correction is to fix punctuation
 
-				message1_words = message1_words.join(" ");
-				message1_words[message1_words.length - 1] = message2;
-				return message1_words;
+				wordsOfMessage = wordsOfMessage.join(" ");
+				wordsOfMessage[wordsOfMessage.length - 1] = correction;
+				return wordsOfMessage;
 			}
 		}
 
-		if (message2[message2.length - 1] == ":") {
+		if (correction[correction.length - 1] == ":") {
 			return false; // a :* face
 		}
 
-		if ((message1_words.length == 1) && (message2.length == 1) && (message1_words[0] == message2[0])) {
+		if ((wordsOfMessage.length == 1) && (correction.length == 1) && (wordsOfMessage[0] == correction[0])) {
 			return false;
 		}
-		oldIndex=0;
-		oldDist = 10000;
-		for (var i = 0; i < message1_words.length; i++) {
 
-			newDist = distance(message1_words[i],message2);
+		oldIndex = 0;
+		oldDistance = 10000;
+		
+		for (var i = 0; i < wordsOfMessage.length; i++) {
 
-			if (newDist < oldDist) {
-				oldDist=newDist;
+			newDistance = distance(wordsOfMessage[i],correction);
+
+			if (newDistance < oldDistance) {
+				oldDistance = newDistance;
 				oldIndex = i;
 			}
 
 		}
-		prevWord = message1_words[oldIndex];
+		prevWord = wordsOfMessage[oldIndex];
 		punctuation = (prevWord.substr(prevWord.length - 1));
-		flag = false;
+		
 		if (!("!$%().,?;:".indexOf(punctuation) > -1)) {
 			punctuation = "";
 		}
-		if (oldDist > 13) { return false; }
-		message1_words[oldIndex] = message2+punctuation;
-		return message1_words.join(" ");
+	
+		// if the levenstein distance is too far, cancel early
+		if (oldDistance > 13) { return false; }
+		
+		wordsOfMessage[oldIndex] = correction + punctuation;
+		
+		return wordsOfMessage.join(" ");
 
 	},
 	correct: function(message, allowMultipleCorrections = false, allowLongCorrections = false) {
