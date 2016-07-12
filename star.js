@@ -61,9 +61,16 @@ var starjs = {
 		if (correction.length == 0) {
 			return false;
 		}
+
+		correctionMerged = correction;
+
+		if (typeof(correction) != "string") {
+			correctionMerged = correction.join("");
+		}
+
 		if (("!$%().,?;:".indexOf(correction[correction.length - 1]) > -1)) {
 
-			if (correction.join("").length == 1) {
+			if (correctionMerged.length == 1) {
 				// entire correction is to fix punctuation
 
 				wordsOfMessage = wordsOfMessage.join(" ");
@@ -82,12 +89,12 @@ var starjs = {
 
 		oldIndex = 0;
 		oldDistance = 10000;
-		
+
 		for (var i = 0; i < wordsOfMessage.length; i++) {
 
 			newDistance = distance(wordsOfMessage[i],correction);
 
-			if (newDistance < oldDistance) {
+			if ((newDistance < oldDistance)&&(newDistance != 0)) {
 				oldDistance = newDistance;
 				oldIndex = i;
 			}
@@ -95,16 +102,16 @@ var starjs = {
 		}
 		prevWord = wordsOfMessage[oldIndex];
 		punctuation = (prevWord.substr(prevWord.length - 1));
-		
+
 		if (!("!$%().,?;:".indexOf(punctuation) > -1)) {
 			punctuation = "";
 		}
-	
+
 		// if the levenstein distance is too far, cancel early
 		if (oldDistance > 13) { return false; }
-		
+
 		wordsOfMessage[oldIndex] = correction + punctuation;
-		
+
 		return wordsOfMessage.join(" ");
 
 	},
