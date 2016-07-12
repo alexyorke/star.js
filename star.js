@@ -51,6 +51,9 @@ var starjs = {
 			return d[n][m];
 		}
 
+		function isUpperCase(text) {
+			return (text[0].toUpperCase() == text[0]);
+		}
 
 		if (("/".indexOf(message[0]) > -1) && ("/".indexOf(correction) > -1)) {
 
@@ -115,8 +118,19 @@ var starjs = {
 		}
 
 		// if the levenstein distance is too far, cancel early
-		if (oldDistance > 13) { return false; }
+		if (oldDistance > 4) { return false; }
 
+		// match case
+
+		correction = correction.split("");
+
+		if (isUpperCase(wordsOfMessage[oldIndex])) {
+			correction[0] = correction[0].toUpperCase();
+		} else {
+			correction[0] = correction[0].toLowerCase();
+		}
+
+		correction = correction.join("");
 		wordsOfMessage[oldIndex] = correction + punctuation;
 
 		return wordsOfMessage.join(" ");
