@@ -51,6 +51,13 @@ var starjs = {
 			return d[n][m];
 		}
 
+
+		if (("/".indexOf(message[0]) > -1) && ("/".indexOf(correction) > -1)) {
+
+			return false; // might be a path name
+
+		}
+
 		wordsOfMessage = message[0].split(" ");
 		correction = message[1].split("*")[0];
 
