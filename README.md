@@ -36,13 +36,25 @@ If multiple misspelled words exist, such as when using shorthand writing, star.j
 
 Star.js will replace "tyop" with "typo" because it sounds similar (using soundex) but will not consider msg to be a typo because the replacement does not make sense. Similarly, if I replace a "misspelled" word with another one:
 
-*Message:* Just send the file over to /dev/zero
-
-*Correction:* /dev/null*
-
-Star.js will recognize that /dev/zero is a misspelled word, and notices that the replacement is also misspelled. Since the two look similar, (both contain slashes and start with /dev/) it will replace it.
-
 Sometimes, no words are misspelled but instead a context change is needed. If something is typed but contains something incorrect, Star.js can use some of the words in the correction to base its starting position from.
+
+*Message:* My rss isn't working today
+
+*Correction:* rss reader*
+
+*Corrected Message:* My rss reader isn't working today
+
+Here, Star.js uses "rss" as an anchor word, and adds "reader" after it.
+
+(In beta) sometimes, corrections might make a sentence more gramatically correct, but the words have absolutely no relation to any misspellings.
+
+*Message:* He go to store tomorrow
+
+*Correction:* will*
+
+*Corrected Message:* He will go to the store tomorrow
+
+Star.js notices that the word "He" is a null link, and adds the correction to the end, since will is acting as a verb for the proper pronoun "he".
 
 *Message:* Turn left on Main Street, then take a right at 83 Prince Street.
 
