@@ -4,7 +4,7 @@
   "description": "A small javascript library to automatically correct typos in messages based on the next message.",
   "main": "star.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "true && exit 0"
   },
   "repository": {
     "type": "git",
