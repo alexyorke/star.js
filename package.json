@@ -1,6 +1,6 @@
 {
   "name": "star-correct",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "A small javascript library to automatically correct typos in messages based on the next message.",
   "main": "star.js",
   "scripts": {
