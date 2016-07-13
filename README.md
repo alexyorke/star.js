@@ -6,13 +6,24 @@ Fixing typos was never easier*. A small javascript library to automatically corr
 ### Usage: 
 `starjs.correct(phrase[]);` where `phrase` is a two element array, the first element is the first message, the second is the correction. If there is no corrections to be made (because the correction is too ambigious, or it doesn't need to be corrected) it will return `false`.
 
-example (nodejs): 
+Example 1 (nodejs): 
 ```
 var starjs = require('star-correct');
 
 // Will Output 'I would like to do that today sometime'
 console.log(starjs.correct(['I would like to to that today sometime', 'to do*']));
 ```
+
+Star.js knows when something isn't a correction, even though it is passed in as a correction.
+Example 2: 
+```
+var starjs = require('star-correct');
+
+// Will return false, since there is no correction to be made.
+console.log(starjs.correct(['I like apples', 'I like oranges, pecans, and strawberries, too.']));
+```
+
+
 ##### Sample Usage
 *Might be used for IM applications, where messages can be edited later or sent a few seconds late in order to allow for corrections.*
 
