@@ -8,3 +8,6 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+
+# example/debug data files
+data/
