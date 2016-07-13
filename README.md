@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/star-correct.svg)](https://badge.fury.io/js/star-correct)
+[![npm version](https://badge.fury.io/js/star-correct.svg)](https://badge.fury.io/js/star-correct) [![travis cli](https://travis-ci.org/Decagon/star.js.svg)](https://travis-ci.org/Decagon/star.js/branches)
 
 # star.js
 Fixing typos was never easier*. A small javascript npm library to automatically correct typos in messages based on the next message, and it works out of the box, no dependencies. This repository addresses productivity issues, having to manually go back, modify your message, and then resend it. Just type your correction in the next message, followed by a star, and keep your hands on your keyboard. Star.js will fetch the right correction for you.
