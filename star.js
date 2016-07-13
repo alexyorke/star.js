@@ -1,5 +1,5 @@
 var starjs = {
-	correctL: function(message) {
+	correct: function(message) {
 		function distance(s, t) {
 			var d = []; //2d matrix
 
@@ -134,47 +134,6 @@ var starjs = {
 		wordsOfMessage[oldIndex] = correction + punctuation;
 
 		return wordsOfMessage.join(" ");
-
-	},
-	correct: function(message, allowMultipleCorrections = false, allowLongCorrections = false) {
-		var correction = message[1];
-		var words = message[0].split(" ");
-		correction = correction.trim();
-
-		if (correction.split(" ").length - 2 > words.length) {
-			console.log("Filter 1");
-			return false;
-		}	       
-
-		if (correction.split(" ").length == 1 && words.length == 1) {
-			return correction.split("*")[0];
-		}
-		correction = correction.split("*");
-		if (!allowLongCorrections) {
-			if (message[1].split(" ").length > 4) {
-				console.log("Triggered filter 2");
-				return false; // disallow long corrections
-			}
-		}
-
-		var modifiedText = false;
-		for (var i = words.length; i--;) {
-
-			if (this.soundex(words[i]) == this.soundex(correction)) {
-				words[i] = correction;   
-				modifiedText = true;
-				if (!allowMultipleCorrections) {
-					break;
-				}
-			}
-
-		}
-		if (modifiedText) {
-			return words.join(" ");
-		} else {
-			console.log("Star.js: could not find suitable replacement.")
-				return false;
-		}
 
 	},
 	soundex: function(str) { 
