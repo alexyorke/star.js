@@ -1,5 +1,6 @@
 var starjs = {
 	correct: function(message) {
+		// Credit: http://stackoverflow.com/questions/11919065/sort-an-array-by-the-levenshtein-distance-with-best-performance-in-javascript/11958496#11958496
 		function distance(s, t) {
 			var d = []; //2d matrix
 
