@@ -10,8 +10,8 @@ example (nodejs):
 ```
 var starjs = require('star-correct');
 
-// Will Output 'Hello My Name is Bill'
-console.log(starjs.correct(['Helo My Name is Bill', 'Hello']));
+// Will Output 'I would like to do that today sometime'
+console.log(starjs.correct(['I would like to to that today sometime', 'to do*']));
 ```
 ##### Sample Usage
 *Might be used for IM applications, where messages can be edited later or sent a few seconds late in order to allow for corrections.*
