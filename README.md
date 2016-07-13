@@ -1,14 +1,13 @@
 [![npm version](https://badge.fury.io/js/star-correct.svg)](https://badge.fury.io/js/star-correct)
 
 # star.js
-Fixing typos was never easier*. A small javascript npm library to automatically correct typos in messages based on the next message. This repository addresses issues with having to manually go back, modify your message, and then resend it, rather than just typing your correction in the next message, followed by a star.
+Fixing typos was never easier*. A small javascript npm library to automatically correct typos in messages based on the next message, and it works out of the box, no dependencies. This repository addresses productivity issues, having to manually go back, modify your message, and then resend it. Just type your correction in the next message, followed by a star, and keep your hands on your keyboard. Star.js will fetch the right correction for you.
 
 ### Usage: 
 `starjs.correct(phrase[]);` where `phrase` is a two element array, the first element is the first message, the second is the correction. If there is no corrections to be made (because the correction is too ambigious, or it doesn't need to be corrected) it will return `false`.
 
 ### Examples
 
-#### Example 1
 ```
 var starjs = require('star-correct');
 
@@ -18,7 +17,7 @@ console.log(starjs.correct(['I would like to to that today sometime', 'to do*'])
 
 Star.js knows when something isn't a correction, even though it is passed in as a correction.
 
-####Example 2: 
+Or, maybe something a little more interesting:
 ```
 var starjs = require('star-correct');
 
@@ -73,9 +72,9 @@ Things can get a bit tricky when working with multiple values that could easily 
 
 Here, it is more likely that the user typed "34" instead of "23" because of how close the number keys are on the keyboard compared to the distance from 8 and 3 to 2 and 3.
 
-### Download
+### Demo
 
-You can download Star.js on the npm repository here: https://badge.fury.io/js/star-correct
+A demo is available at https://github.com/Decagon/star.js/blob/master/index.html
 
 ### Issues
 
@@ -92,7 +91,7 @@ Just install node with `apt-get install node`, create a new project with `npm in
 
 I have only tested Star.js in Google Chrome, but it should work with all modern browsers, except possibly IE, since it uses a string function which is not built-in to IE.
 
-### Contributors
+### Thanks
 
 - @adamisntdead, for helping publish Star.js to NPM, and making the readme file more readable and attractive
 - Stack Overflow (credit in comments) for the levenshtein distance algorthim
