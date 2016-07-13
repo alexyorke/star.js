@@ -1,12 +1,14 @@
 [![npm version](https://badge.fury.io/js/star-correct.svg)](https://badge.fury.io/js/star-correct)
 
 # star.js
-Fixing typos was never easier*. A small javascript library to automatically correct typos in messages based on the next message. This repository addresses issues with having to manually go back, modify your message, and then resend it, rather than just typing your correction in the next message, followed by a star.
+Fixing typos was never easier*. A small javascript npm library to automatically correct typos in messages based on the next message. This repository addresses issues with having to manually go back, modify your message, and then resend it, rather than just typing your correction in the next message, followed by a star.
 
 ### Usage: 
 `starjs.correct(phrase[]);` where `phrase` is a two element array, the first element is the first message, the second is the correction. If there is no corrections to be made (because the correction is too ambigious, or it doesn't need to be corrected) it will return `false`.
 
-Example 1 (nodejs): 
+### Examples
+
+#### Example 1
 ```
 var starjs = require('star-correct');
 
@@ -15,7 +17,8 @@ console.log(starjs.correct(['I would like to to that today sometime', 'to do*'])
 ```
 
 Star.js knows when something isn't a correction, even though it is passed in as a correction.
-Example 2: 
+
+####Example 2: 
 ```
 var starjs = require('star-correct');
 
@@ -23,13 +26,8 @@ var starjs = require('star-correct');
 console.log(starjs.correct(['I like apples', 'I like oranges, pecans, and strawberries, too.']));
 ```
 
-
-##### Sample Usage
-*Might be used for IM applications, where messages can be edited later or sent a few seconds late in order to allow for corrections.*
-
-Star.js is very new, and so most of the features have not been implemented yet. It's meant to replace manual spell checkers, or drop down menus that let you choose a different word. Spell checkers are very good if you have the time, but if you only have one correction to make, they're a bit overkill, especially when you have to use the mouse.
-
-### How it works
+#### Examples explained
+Star.js is very new, and so most of the features have not been implemented yet. It's meant to replace manual spell checkers, or drop down menus that let you choose a different word. Spell checkers are very good if you have the time, but if you only have one correction to make, they're a bit overkill, especially when you have to use the mouse. All of these examples follow the same syntax as the previous boilerplate example.
 
 Say you're on some sort of internet chat thing, and you type:
 
@@ -77,7 +75,7 @@ Here, it is more likely that the user typed "34" instead of "23" because of how 
 
 ### Download
 
-You can download Star.js here: https://badge.fury.io/js/star-correct
+You can download Star.js on the npm repository here: https://badge.fury.io/js/star-correct
 
 ### Issues
 
@@ -93,3 +91,8 @@ Just install node with `apt-get install node`, create a new project with `npm in
 ### Browser
 
 I have only tested Star.js in Google Chrome, but it should work with all modern browsers, except possibly IE, since it uses a string function which is not built-in to IE.
+
+### Contributors
+
+- @adamisntdead, for helping publish Star.js to NPM, and making the readme file more readable and attractive
+- Stack Overflow (credit in comments) for the levenshtein distance algorthim
