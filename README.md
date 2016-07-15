@@ -76,7 +76,7 @@ Here, it is more likely that the user typed "34" instead of "23" because of how 
 
 ### Demo
 
-A demo is available at https://github.com/Decagon/star.js/blob/master/index.html
+A demo is available at https://decagon.github.io/star.js/ (thanks to @njt1982 for getting the demo working nicely)
 
 ### Issues
 
