@@ -16,6 +16,16 @@ Message 1: Helo my name is Bob<br />
 Message 2: Hello*<br />
 
 Automatically corrected message: <p id="example"> </p>
+
+Try Star.js with your own message!<br />
+
+Your message: <input type="text" name="msg" id="msg"></input><br />
+Correction you want to make: <input type="text" name="correction" id="correction"></input><br />
+
+<input type="button" value="Correct!" onclick="javascript:document.getElementById('output').innerHTML = starjs.correct([document.getElementById('msg').value, document.getElementById('correction').value])">
+</input><br /><br />
+
+Corrected message: <p id="output"> </p>
 <script src="star.js"></script>
 <script>
 document.getElementById("example").innerHTML = starjs.correct(["Helo my name is Bob", "Hello*"]);
