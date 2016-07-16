@@ -112,9 +112,11 @@ var starjs = {
 
 		}
 		prevWord = wordsOfMessage[oldIndex];
-		punctuation = (prevWord.substr(prevWord.length - 1));
 
-		if (!("!$%().,?;:".indexOf(punctuation) > -1)) {
+		// http://stackoverflow.com/a/4431173
+		punctuation = prevWord.match(/['";:,.\/?\\-]/g);
+
+		if (punctuation == null) {
 			punctuation = "";
 		}
 
