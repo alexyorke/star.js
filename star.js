@@ -139,7 +139,16 @@ var starjs = {
 		return wordsOfMessage.join(" ");
 
 	},
-	closeKeys: function(inputText, correction) {
+	closeKeys: function(inputText, correction, radius = null) {
+		// radius is how far away the incorrect key can be from the correct one.
+		// it is an optional param, but it reduces the search space if set to less than 1.
+		// reducing the search space can increase correction accuracy, at the expense of requiring a
+		// more accurately spelled word
+
+		if (radius == null) {
+			radius = 0.25;
+		}
+
 		// it's up to the algorthim to determine whether a match is "too good" (i.e the ranking is too high and to find a slightly lower one.) This is because if the ranking is too high, it means that the input and correction are identical, and it's unlikely that the user corrected a perfectly good word.
 
 
@@ -184,7 +193,8 @@ var starjs = {
 		correction = correction.trim();
 
 		for (var i = 0; i < inputText.length; i++) {
-			closeLetters.push(keyApprox[inputText[i]]);
+			var keys = keyApprox[inputText[i]];
+			closeLetters.push(keys.substr(0, Math.round(radius*keys.length)));
 		}
 
 		for (var j = 0; j < correction.length; j++) {
