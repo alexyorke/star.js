@@ -139,69 +139,81 @@ var starjs = {
 		return wordsOfMessage.join(" ");
 
 	},
-	soundex: function(str) { 
-		str = str.toString();
-		str = str.toUpperCase();
-		str = str.split('');
+	closeKeys: function(inputText, correction) {
+		// it's up to the algorthim to determine whether a match is "too good" (i.e the ranking is too high and to find a slightly lower one.) This is because if the ranking is too high, it means that the input and correction are identical, and it's unlikely that the user corrected a perfectly good word.
 
-		var firstLetter = str[0];
 
-		// convert letters to numeric code
-		for (var i = 0; i < str.length; i++) {
-			switch (str[i]) {
+		// returns an array, the first element is the ranking of how closely the inputText could resemble the output from 0 to length of inputText or correction, whichever is greater. The higher the number the higher probability that it could be spelled with the correction.
+		// the second element is the same thing as the first, except the possible values range from 0 to 1, 0 being completely unlikely it could be generated from the correction, and 1 being 100% chance it was (i.e is the same text.)
 
-				case 'B':
-				case 'F':
-				case 'P':
-				case 'V':
-					str[i] = '1';
-					break;
+		// the keyApprox array is for a US qwerty keyboard layout
+		var keyApprox = {
+			q: "qwasedzx",
+			w: "wqesadrfcx",
+			e: "ewrsfdqazxcvgt",
+			r: "retdgfwsxcvgt",
+			t: "tryfhgedcvbnju",
+			y: "ytugjhrfvbnji",
+			u: "uyihkjtgbnmlo",
+			i: "iuojlkyhnmlp",
+			o: "oipklujm",
+			p: "ploik",
+			a: "aqszwxwdce",
+			s: "swxadrfv",
+			d: "decsfaqgbv",
+			f: "fdgrvwsxyhn",
+			g: "gtbfhedcyjn",
+			h: "hyngjfrvkim",
+			j: "jhknugtblom",
+			k: "kjlinyhn",
+			l: "lokmpujn",
+			z: "zaxsvde",
+			x: "xzcsdbvfrewq",
+			c: "cxvdfzswergb",
+			v: "vcfbgxdertyn",
+			b: "bvnghcftyun",
+			n: "nbmhjvgtuik",
+			m: "mnkjloik"
+		};
 
-				case 'C':
-				case 'G':
-				case 'J':
-				case 'K':
-				case 'Q':
-				case 'S':
-				case 'X':
-				case 'Z':
-					str[i] = '2';
-					break;
+		var closeLetters = [];
+		var totalRanking = 0;
 
-				case 'D':
-				case 'T':
-					str[i] = '3';
-					break;
+		// make sure that there are no extra spaces, otherwise it messes things up
+		inputText = inputText.trim();
+		correction = correction.trim();
 
-				case 'L':
-					str[i] = '4';
-					break;
-
-				case 'M':
-				case 'N':
-					str[i] = '5';
-					break;
-
-				case 'R':
-					str[i] = '6';
-					break;
-
-				default:
-					str[i] = '0';
-					break;
-			}
+		for (var i = 0; i < inputText.length; i++) {
+			closeLetters.push(keyApprox[inputText[i]]);
 		}
 
-		// remove duplicates
-		var output = firstLetter;
-		for (var i = 1; i < str.length; i++)
-			if (str[i] != str[i-1] && str[i] != '0')
-				output += str[i];
+		for (var j = 0; j < correction.length; j++) {
 
-		// pad with 0's or truncate
-		output = output + "0000";
-		return output.substring(0, 4);
+			if (closeLetters[j] !== undefined) {
+
+				var ranking = closeLetters[j].indexOf(correction[j]);
+
+				// if it is the first letter (i.e the same letter) set to one, which is the highest ranking
+				if (ranking === 0) {
+					ranking = 1;
+				}
+
+				// close letter not found in array (i.e too far)
+				if (ranking == -1) {
+					// penalize the ranking
+					ranking--;
+				}
+
+				totalRanking = totalRanking + (1 / ranking);
+			} else {
+				// something bad happened, and the correction/inputText is too long or short.
+			}
+
+		}
+
+		return [totalRanking, ((totalRanking / Math.max(correction.length, inputText.length)) + 1) / 2];
 	}
+
 
 };
 
