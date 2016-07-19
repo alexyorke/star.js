@@ -74,6 +74,22 @@ Things can get a bit tricky when working with multiple values that could easily 
 
 Here, it is more likely that the user typed "34" instead of "23" because of how close the number keys are on the keyboard compared to the distance from 8 and 3 to 2 and 3.
 
+### Why Star.js is a bit different than a spell checker
+
+Star doesn't try to correct every single word; it knows the correct spelling of the word that you meant to type, and compares them against the words that you did type. Here's a comparison of a general spell checker against Star:
+
+*Super-bad-misspelled-sentence:* The ayoxk bepwn dpx kimped ovwe the laxy soh
+
+*Correction I want to make:* quick*
+
+*Star.js:* ayoxk -> quick (correctly identifies misspelled word)
+
+*Conventional spell checker suggestions:* aux, askoa, Axons, ataxic... (and no suggestion for "quick"!)
+
+This is because spell checkers put heavy emphasis on the first letter of the word being correct, which is not always the case. They also use prouncination cues to determine whether a word is spelled correctly.
+
+Star.js doesn't use prouncination, and it doesn't focus tonnes on the first letter: it looks at keys that are close to the letter that you may be trying to type--and a few other things--to determine whether the correction should correct that word. Each misspelled word is given a ranking on how likely it could have been created by looking at the keys which are closer to each letter on the keyboard, along with calculating a modified version of the levenshtein distance, and the highest ranking word is automatically corrected, if it is not a perfect match.
+
 ### Demo
 
 A demo is available at https://decagon.github.io/star.js/ (thanks to @njt1982 for getting the demo working nicely)
