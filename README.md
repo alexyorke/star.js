@@ -20,7 +20,7 @@ starjs.correct(['I would like to to that today sometime', 'to do']);
 ```
 
 Not all messages are corrections. Star.js knows when something isn't a correction, even though it is passed in as a correction.
-```
+```javascript
 var starjs = require('star-correct');
 
 starjs.correct(['I like apples', 'I like oranges, pecans, and strawberries, too.']);
