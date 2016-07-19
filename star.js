@@ -8,8 +8,8 @@ var starjs = {
 			var n = s.length;
 			var m = t.length;
 
-			if (n == 0) return m;
-			if (m == 0) return n;
+			if (n === 0) return m;
+			if (m === 0) return n;
 
 			//Create an array of arrays in javascript (a descending loop is quicker)
 			for (var i = n; i >= 0; i--) d[i] = [];
@@ -62,20 +62,20 @@ var starjs = {
 
 		}
 
-		wordsOfMessage = message[0].split(" ");
-		correction = message[1].split("*")[0];
+		var wordsOfMessage = message[0].split(" ");
+		var correction = message[1].split("*")[0];
 
 		if (wordsOfMessage.length == correction.split(" ").length) {
 			return correction;
 		}
 
-		if (correction.length == 0) {
+		if (correction.length === 0) {
 			return false;
 		}
 
-		correctionMerged = correction;
+		var correctionMerged = correction;
 
-		if (typeof(correction) != "string") {
+		if (typeof(correction) !== "string") {
 			correctionMerged = correction.join("");
 		}
 
@@ -98,25 +98,25 @@ var starjs = {
 			return false;
 		}
 
-		oldIndex = 0;
-		oldDistance = 10000;
+		var oldIndex = 0;
+		var oldDistance = 10000;
 
 		for (var i = 0; i < wordsOfMessage.length; i++) {
 
-			newDistance = distance(wordsOfMessage[i],correction);
+			var newDistance = distance(wordsOfMessage[i],correction);
 
-			if ((newDistance < oldDistance)&&(newDistance != 0)) {
+			if ((newDistance < oldDistance) && (newDistance !== 0)) {
 				oldDistance = newDistance;
 				oldIndex = i;
 			}
 
 		}
-		prevWord = wordsOfMessage[oldIndex];
+		var prevWord = wordsOfMessage[oldIndex];
 
 		// http://stackoverflow.com/a/4431173
-		punctuation = prevWord.match(/['";:,.\/?\\-]/g);
+		var punctuation = prevWord.match(/['";:,.\/?\\-]/g);
 
-		if (punctuation == null) {
+		if (punctuation === null) {
 			punctuation = "";
 		}
 
