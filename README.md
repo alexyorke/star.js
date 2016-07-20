@@ -8,6 +8,12 @@ starjs.correct(['Fixing typos awsf never asier', 'easier* was*'])
 // 'Fixing typos was never easier'
 ```
 
+![gif of star js](https://camo.githubusercontent.com/4103442ab23201042fa832cd81ce0cb29fab642e/687474703a2f2f692e696d6775722e636f6d2f31595745554f532e676966)
+
+(See Sozercan's slack-typobot on GitHub, powered by Star.js: https://github.com/sozercan/slack-typobot)
+
+
+
 A small javascript npm library to automatically correct typos in messages based on the next message, and it works out of the box--no dependencies.
 
 ### Examples
