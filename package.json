@@ -17,7 +17,7 @@
     "Message"
   ],
   "author": "Decagon <decagongithub@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Decagon/star.js/issues"
   },
