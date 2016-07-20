@@ -12,9 +12,17 @@ starjs.correct(['Fixing typos awsf never asier', 'easier* was*'])
 
 (See Sozercan's slack-typobot on GitHub, powered by Star.js: https://github.com/sozercan/slack-typobot)
 
-
-
 A small javascript npm library to automatically correct typos in messages based on the next message, and it works out of the box--no dependencies.
+
+### Getting Started
+
+If you're using Ubuntu/Debian, install node: `apt-get install node`
+
+Create a new dir: `mkdir my-project && cd my-project`
+
+Run `npm init`, then `npm install star-correct`, and just include `star-correct` via `var starjs = require('star-correct');` in the first line of your javascript file, and you're good to go!
+
+See the examples section to get started.
 
 ### Examples
 
@@ -86,10 +94,6 @@ A demo is available at https://decagon.github.io/star.js/ (thanks to @njt1982 fo
 - capitalization is only preserved for the first letter, the rest is ignored
 - whitespace is not preserved, but just added (and never subtracted)
 - there are, of course a few false positives where star.js can make the new message non-sensical
-
-### Configuring
-
-Just install node with `apt-get install node`, create a new project with `npm init` and just include star.js via `var starjs = require('star-correct');` and you're good to go! See the examples section to see how to get started.
 
 ### Browser
 
