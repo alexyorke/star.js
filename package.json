@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/Decagon/star.js/issues"
   },
-  "homepage": "https://github.com/Decagon/star.js#readme"
+  "homepage": "https://github.com/Decagon/star.js#readme",
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
 }
