@@ -174,7 +174,7 @@ var starjs = {
       u : "uyihkjtgbnmlo",
       i : "iuojlkyhnmlp",
       o : "oipklujm",
-      p : "ploik",
+      p : "ploi;':k",
       a : "aqszwxwdce",
       s : "swxadrfv",
       d : "decsfaqgbv",
