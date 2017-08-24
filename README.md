@@ -43,29 +43,44 @@ starjs.correct(['I like apples', 'I like oranges, pecans, and strawberries, too.
 
 Star.js is meant to replace manual spell checkers, or drop down menus that let you choose a different word. Spell checkers are very good if you have the time, but if you only have one correction to make, they're a bit overkill, especially when you have to use the mouse. All of these examples follow the same syntax as the previous boilerplate example.
 
-### Examples for Star.js 2.0 (in development)
+### Test cases for Star.js 2.0 (in development)
 
 ```javascript
 starjs.correct(['I like apples', 'I like oranges, pecans, and strawberries, too.']);
 // false (no correction needed)
 
 starjs.correct(['She wanted to go to the movies', 'he*']);
-// 'He wanted to go to the movies'
+// 'He wanted to go to the movies' (pronoun recognition)
+
+starjs.correct(['Sarah wanted to go to the movies', 'Jane*']);
+// 'Jane wanted to go to the movies' (name detection)
+
+starjs.correct(['She wet to the store', 'whent* went*']);
+// 'She went to the store' (overwriting a correction)
+
+starjs.correct(['Their owners' were talking loudly', 'my* speaking*']);
+// 'My owner was speaking loudly' (this test case may be too complex)
 
 starjs.correct(['He went to the concert yesterday', 'a few days ago* was going to go*']);
-// 'He was going to go to the concert a few days ago'
+// 'He was going to go to the concert a few days ago' (duplicate corrections + time)
 
 starjs.correct(['He go to store tomorrow', 'will*']);
-// 'He will go to the store tomorrow'
+// 'He will go to the store tomorrow' (context-based time)
 
 starjs.correct(['Turn left on Main Street, then take a right on 123 Sesame Street', 'turn right*']);
-// 'Turn right on Main Street, then take a right on 123 Sesame Street
+// 'Turn right on Main Street, then take a right on 123 Sesame Street (direction)
 
 starjs.correct(['I have 10 apples and one bananas', '2*']);
-// 'I have 10 apples and two bananas'
+// 'I have 10 apples and two bananas' (similarly formatted numbers)
 
 starjs.correct(['The ayoxk bepwn dpx kimped ovwe the laxy soh', 'quick**']);
 // 'The quick bepwn dpx kimped ovwe the laxy soh'
+
+starjs.correct(['He ygusy today is a day where', 'hey guys*']);
+// 'Hey guys today is a day where' (accidental space)
+
+starjs.correct(['And the study[1] shows that, in this case...', '[2]*']);
+// 'And the study[2] shows that, in this case...' (replacing references)
 ```
 
 ### Why Star.js is a bit different than a spell checker
