@@ -58,7 +58,7 @@ starjs.correct(['Sarah wanted to go to the movies', 'Jane*']);
 starjs.correct(['She wet to the store', 'whent* went*']);
 // 'She went to the store' (overwriting a correction)
 
-starjs.correct(['Their owners' were talking loudly', 'my* speaking*']);
+starjs.correct(['Their owners\' were talking loudly', 'my* speaking*']);
 // 'My owner was speaking loudly' (this test case may be too complex)
 
 starjs.correct(['He went to the concert yesterday', 'a few days ago* was going to go*']);
