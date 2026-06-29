@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/Decagon/star.js#readme",
   "devDependencies": {
-    "chai": "^3.5.0"
+    "chai": "^6.2.2"
   }
 }
