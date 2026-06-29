@@ -8,6 +8,7 @@ on:
 
 jobs:
   CodeQL-Build:
+    if: github.event_name != 'push' || github.actor != 'dependabot[bot]'
 
     runs-on: ubuntu-latest
 
